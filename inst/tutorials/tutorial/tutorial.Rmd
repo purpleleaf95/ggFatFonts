@@ -1,0 +1,414 @@
+---
+title: "How to use ggFatFonts R package"
+tutorial:
+  id: "ggFatFonts-tutorial"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Overview
+
+This package helps you build FatFonts graphics on the basis of ggplot2.
+
+There are currently four quick plot functions provided: `ggFFConfMatr`, `ggFFHeatMap`, `ggFFCorrMatr` and `ggFFClusScatPlot`. Moreover, if you want to build some other plots using FatFonts, you can use `addGGFFLayer` function.
+
+There are three FatFonts types available: "Cubica", "Miguta", and "Rotunda".
+
+
+## Getting started
+
+### Download RStudio
+
+Go to <https://www.rstudio.com/products/rstudio/download/> and download the latest version of RStudio. Install RStudio on your own computer by following the instructions on this website.
+
+### Download the source package
+
+You can download the source packages from (some website, TBD). There are two types of source packages available. The ".tar.gz" file is recommended. However, if you cannot install the ggFatFonts package using this file, you can try the ".zip" file. You can find both tutorials and the font files inside the ".tar.gz" file, but they are not available in the ".zip" file.
+
+### Install FatFonts on your computer
+
+Go to the "font" folder inside the ".tar.gz" file and you will then find the font files. Install the FatFonts you like. If you are using a windows machine, simply double click the font file and the chosen font will then be installed. If you find some difficulty in installing FatFonts, you can follow instructions on <https://www.dafont.com/faq.php>.
+
+There are currently three FatFonts available: "Cubica", "Miguta" and "Rotunda".
+
+### Install ggFatFonts package on your RStudio
+
+Open RStudio. Go to the "Packages" panel and click "Install".
+
+<div align=center>
+  ![](images/Getting_started_1.png){width="100%"}
+</div>
+
+<br>Choose ??Package Archive File (.zip; .tar.gz)?? in the ??Install from:?? selection box. Afterwards, click ??Browse?? and find the source files (i.e. the ??.tar.gz?? or the ??.zip?? file) you have just saved. Now click ??Install??.
+
+<div align=center>
+  ![](images/Getting_started_2.png){width="40%"}
+</div>
+
+<br>If you see words like this in your ??Console?? panel. Congratulations, the package has now been installed successfully.
+
+<div align=center>
+  ![](images/Getting_started_3.png){width="80%"}
+</div>
+
+### Include ggFatFonts in your session
+
+Simply use the following code, and ggFatFonts will then be included in your session.
+```{r include-ggFatFonts, exercise = TRUE}
+library(ggFatFonts)
+```
+
+
+## Confusion matrix
+
+### Build a FatFonts confusion matrix
+
+The function provided in this package to produce FatFonts confusion matrix plot is `ggFFConfMatr`. There are two parameters that must be passed in the function: `actuClass` is a vector containing the actual values; `predClass` is a vector containing the predicted values.
+
+Two test datasets, "confMatrTestData" and "confMatrTestData2", are built in this package to get you start. Try to build a default FatFonts confusion matrix plot using the following code:
+
+```{r ggFFConfMatr-basic, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFConfMatr(confMatrTestData$`actual value`, confMatrTestData$`predicted value`)
+```
+
+### Change the position and size of FatFonts digits
+
+Sometimes, the position of fonts may become weird using the default settings. When this happens, you can slightly adjust the position of FatFonts digits using the `adjustPos` parameter. The second plot looks better when this parameter has been changed from 3 (default) to 12.
+
+```{r ggFFConfMatr-advanced-1, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFConfMatr(confMatrTestData2$TRUE., confMatrTestData2$predicted)
+ggFFConfMatr(confMatrTestData2$TRUE., confMatrTestData2$predicted, adjustPos = 12)
+```
+
+Another important parameter to be considered is `fontSize`. Automatic change of font size has been applied in this package to avoid overlapping as default (i.e. `fontSize = -1`). However, sometimes you may still want to manually adjust the font size. One thing to remember is that `fontSize` refers to the font size of the smallest digit, so do not set it to a very large number.
+
+```{r ggFFConfMatr-advanced-2, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFConfMatr(confMatrTestData2$TRUE., confMatrTestData2$predicted, adjustPos = 12, fontSize = 5)
+```
+
+### Change font type
+
+The default font type used in this package is ??Cubica?? (i.e. `font = "Cubica"`). If you want to use other FatFonts types (i.e. Miguta" or "Rotunda"), specify the `font` parameter. One thing to remember is that you may need to change the value of `adjustPos` parameter to get a better view after changing font type.
+
+```{r ggFFConfMatr-advanced-3, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFConfMatr(confMatrTestData2$TRUE., confMatrTestData2$predicted, adjustPos = 13, font = 'Rotunda', fontSize = 5)
+```
+
+### Change shrinkage rate
+
+Since FatFonts can only be applied to integers with limited places (i.e. usually 2 or 3 places), `shrink` parameter is provided to narrow the range of values within the dataset. The default value `shrink = -1` refers to automatical change of `shrink` parameter, which will lead you to 2-level FatFonts numbers. This shrinkage rate can be found on the right bottom corner of the plot. You can change this parameter to show more or less digits.
+
+```{r ggFFConfMatr-advanced-4, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFConfMatr(confMatrTestData2$TRUE., confMatrTestData2$predicted, adjustPos = 4, shrink = 1000)
+```
+
+### Change the aspect ratio of each grid
+
+This function will show square grids by default (i.e. `isSquare == TRUE`). However, if you want to use rectangle grids, you can set `isSquare == FALSE`. Notice that rectangle grid is not recommended as the position of FatFonts digits may become weird due to unequal witdth and length.
+
+```{r ggFFConfMatr-advanced-5, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFConfMatr(confMatrTestData2$TRUE., confMatrTestData2$predicted, adjustPos = 16, isSquare = FALSE)
+```
+
+### Change colors
+
+Colors of numbers, borders, backgrounds, etc. can be changed using different parameters. Details can be found in the ??Help?? panel. Instead, you can run `help(ggFFConfMatr)`.
+
+```{r ggFFConfMatr-advanced-6, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFConfMatr(confMatrTestData$`actual value`, confMatrTestData$`predicted value`, fontColor = 'blue')
+```
+
+You can also change the background color according to value using `changeBackCol` parameter. A function should be passed into this parameter, and you need to install `ggplot2` package in advance.
+
+```{r ggFFConfMatr-advanced-7, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+library(ggplot2)
+changeBackColFunc <- function(oldPlot){
+  newPlot <- oldPlot + scale_fill_gradient(low = 'white', high = 'purple')
+  return(newPlot)
+}
+ggFFConfMatr(confMatrTestData$`actual value`, confMatrTestData$`predicted value`, changeBackCol = changeBackColFunc)
+```
+
+Additionally, you can change the color of numbers according to their values using `changeFontColValue` parameter. A function should be passed into this parameter, and you need to install `ggplot2` package in advance.
+
+```{r ggFFConfMatr-advanced-8, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+library(ggplot2)
+changeFontColValueFunc <- function(oldPlot){
+  newPlot <- oldPlot + scale_color_continuous(low = 'dark grey', high = 'purple')
+ return(newPlot)
+}
+ggFFConfMatr(confMatrTestData$`actual value`, confMatrTestData$`predicted value`, changeFontColValue = changeFontColValueFunc)
+```
+
+Another way to change the color of numbers is to change it according to the value of digits. You can do this using `changeFontColDigit` parameter. A vector containing 9 colors should be passed into this parameter, and you can use color combinations provided by the system as well.
+
+Remember that `changeFontColValue` and `changeFontColDigit` cannot be used at the same time.
+
+```{r ggFFConfMatr-advanced-9, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+library(ggplot2)
+cols <- topo.colors(9)
+ggFFConfMatr(confMatrTestData$`actual value`, confMatrTestData$`predicted value`, changeFontColDigit = cols)
+```
+
+
+## Heatmap
+
+### Build a FatFonts heatmap
+
+The function provided in this package to produce FatFonts heatmap plot is `ggFFHeatMap`. There are three parameters that must be passed in the function:  `x` is a vector containing the x values of each data point; `y` is a vector containing the y values of each data point; `z` is a vector containing the values to be displayed in FatFonts. x, y and z should be of the same length.
+
+A test dataset, ??txhousing??, is built in this package to get you start. Try to build a default FatFonts heatmap plot using the following code:
+
+```{r ggFFHeatMap-basic, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFHeatMap(x = txhousing$year[1:3000], y = txhousing$city[1:3000], z = txhousing$sales[1:3000], xAxisTitle = 'year', yAxisTitle = 'city', zAxisTitle = 'sales')
+```
+
+### Customize your plot
+
+Refer to Confusion matrix in this tutorial or the `Help` panel to customize your plot. Some examples are provided as follow.
+
+```{r ggFFHeatMap-advanced-1, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFHeatMap(x = txhousing$year[1:2000], y = txhousing$city[1:2000], z = txhousing$sales[1:2000], xAxisTitle = 'year', yAxisTitle = 'city', zAxisTitle = 'sales', fontSize = 2)
+```
+
+```{r ggFFHeatMap-advanced-2, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFHeatMap(x = txhousing$year[1:2000], y = txhousing$city[1:2000], z = txhousing$sales[1:2000], xAxisTitle = 'year', yAxisTitle = 'city', zAxisTitle = 'sales', fontSize = 2, font = 'Miguta')
+```
+
+```{r ggFFHeatMap-advanced-3, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFHeatMap(x = txhousing$year[1:2000], y = txhousing$city[1:2000], z = txhousing$sales[1:2000], xAxisTitle = 'year', yAxisTitle = 'city', zAxisTitle = 'sales', shrink = 0.01, adjustPos = 1)
+```
+
+```{r ggFFHeatMap-advanced-4, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFHeatMap(x = txhousing$year[1:2000], y = txhousing$city[1:2000], z = txhousing$sales[1:2000], xAxisTitle = 'year', yAxisTitle = 'city', zAxisTitle = 'sales', fontSize = 2, tileFill = 'black', fontColor = 'white')
+```
+
+```{r ggFFHeatMap-advanced-5, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFHeatMap(x = txhousing$year[1:2000], y = txhousing$city[1:2000], z = txhousing$sales[1:2000], xAxisTitle = 'year', yAxisTitle = 'city',zAxisTitle = 'sales', fontSize = 2, isSquare = FALSE)
+```
+
+```{r ggFFHeatMap-advanced-6, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+library(ggplot2)
+changeBackColFunc <- function(oldPlot){
+  newPlot <- oldPlot + scale_fill_gradient(low = 'white', high = 'purple')
+  return(newPlot)
+}
+ggFFHeatMap(x = txhousing$year[1:2000], y = txhousing$city[1:2000], z = txhousing$sales[1:2000], xAxisTitle = 'year', yAxisTitle = 'city', zAxisTitle = 'sales', fontSize = 2, changeBackCol = changeBackColFunc)
+```
+
+```{r ggFFHeatMap-advanced-7, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+library(ggplot2)
+changeFontColValueFunc <- function(oldPlot){
+  newPlot <- oldPlot + scale_color_continuous(low = 'dark grey', high = 'purple')
+ return(newPlot)
+}
+ggFFHeatMap(x = txhousing$year[1:2000], y = txhousing$city[1:2000], z = txhousing$sales[1:2000], xAxisTitle = 'year', yAxisTitle = 'city', zAxisTitle = 'sales', fontSize = 2, changeFontColValue = changeFontColValueFunc)
+```
+
+```{r ggFFHeatMap-advanced-8, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+library(ggplot2)
+cols <- topo.colors(9)
+ggFFHeatMap(x = txhousing$year[1:2000], y = txhousing$city[1:2000], z = txhousing$sales[1:2000], xAxisTitle = 'year', yAxisTitle = 'city', zAxisTitle = 'sales', fontSize = 2, changeFontColDigit = cols)
+```
+
+
+## Correlation matrix
+
+### Build a FatFonts correlation matrix
+
+The function provided in this package to produce FatFonts correlation matrix plot is `ggFFCorrMatr`. There is one parameters that must be passed in the function - `data` which contains the variables displayed in columns.
+
+The built-in dataset ??mtcars?? is introduced to get you start. Try to build a default FatFonts correlation matrix plot using the following code:
+
+```{r ggFFCorrMatr-basic, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFCorrMatr(mtcars[,c(1,3:7)])
+```
+
+### Change the colors of FatFonts digits
+
+To distinguish positive and negative numbers, two rather than one font color parameters are used in this function ?C `fontColorPos` and `fontColorNeg`. You can change the value of these parameters to modify font colors.
+
+```{r ggFFCorrMatr-advanced-1, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFCorrMatr(mtcars[c(1, 3:7)], fontColorPos = 'blue', fontColorNeg = 'green', fontSize = 1)
+```
+
+Likewise, you can pass a function into the `changeFontColValue` parameter or a vector into the`changeFontColDigit` parameter to change font colors according to the value of numbers or digits respectively. Since positive and negative numbers need to be distinguished, `scale_color_gradient2()` is recommended here.
+```{r ggFFCorrMatr-advanced-2, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+library(ggplot2)
+changeFontColValueFunc <- function(oldPlot){
+  newPlot <- oldPlot + scale_color_gradient2()
+ return(newPlot)
+}
+ggFFCorrMatr(mtcars[c(1, 3:7)], changeFontColValue = changeFontColValueFunc, adjustPos = 1, fontSize = 1)
+```
+
+```{r ggFFCorrMatr-advanced-3, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+library(ggplot2)
+cols <- topo.colors(9)
+ggFFCorrMatr(mtcars[c(1, 3:7)], changeFontColDigit = cols, adjustPos = 1, fontSize = 1)
+```
+
+### Customize your plot
+
+Refer to Confusion matrix in this tutorial or the `Help` panel to customize your plot. Some examples are provided as follow.
+
+```{r ggFFCorrMatr-advanced-4, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFCorrMatr(mtcars[c(1, 3:7)], font = 'Miguta')
+```
+
+```{r ggFFCorrMatr-advanced-5, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFCorrMatr(mtcars[c(1, 3:7)], shrink = 10, fontSize = 3)
+```
+
+```{r ggFFCorrMatr-advanced-6, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFCorrMatr(mtcars[c(1, 3:7)], tileFill = 'light grey', fontSize = 1)
+```
+
+```{r ggFFCorrMatr-advanced-7, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFCorrMatr(mtcars[c(1, 3:7)], isSquare = FALSE, fontSize = 1)
+```
+
+```{r ggFFCorrMatr-advanced-8, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+library(ggplot2)
+changeBackColFunc <- function(oldPlot){
+  newPlot <- oldPlot + scale_fill_gradient2()
+  return(newPlot)
+}
+ggFFCorrMatr(mtcars[c(1, 3:7)], changeBackCol = changeBackColFunc, fontColorPos = 'yellow', fontColorNeg = 'yellow', fontSize = 1)
+```
+
+
+## Cluster scatter plot
+
+### Build a FatFonts cluster scatter plot
+
+The function provided in this package to produce FatFonts cluster scatter plot is `ggFFClusScatPlot`. There are two parameters that must be passed in the function: `x` is a vector containing the x values of each data point; `y` is a vector containing the y values of each data point. x and y should be of the same length.
+
+A test dataset, ??mpg??, is built in this package to get you start. Try to build a default FatFonts cluster scatter plot using the following code:
+
+```{r ggFFClusScatPlot-basic, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFClusScatPlot(mpg$cty, mpg$hwy, xAxisTitle = 'cty', yAxisTitle = 'hwy')
+```
+
+### Change bin lengths
+
+You can change the bin length of both x and y axis by specifying the `xBinLength` and `yBinLength` parameters respectively. It is recommended to set x = y as each grid is square.
+
+```{r ggFFClusScatPlot-advanced-1, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFClusScatPlot(mpg$cty, mpg$hwy, xAxisTitle = 'cty', yAxisTitle = 'hwy', xBinLength = 5, yBinLength = 10, adjustPos = 1.5)
+```
+
+### Customize your plot
+
+Refer to Confusion matrix in this tutorial or the `Help` panel to customize your plot. Some examples are provided as follow.
+
+```{r ggFFClusScatPlot-advanced-2, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFClusScatPlot(mpg$cty, mpg$hwy, xAxisTitle = 'cty', yAxisTitle = 'hwy', font = 'Rotunda', adjustPos = 1.1)
+```
+
+```{r ggFFClusScatPlot-advanced-3, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFClusScatPlot(mpg$cty, mpg$hwy, xAxisTitle = 'cty', yAxisTitle = 'hwy', tileFill = 'black', fontColor = 'white')
+```
+
+```{r ggFFClusScatPlot-advanced-4, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFClusScatPlot(mpg$cty, mpg$hwy, xAxisTitle = 'cty', yAxisTitle = 'hwy', isSquare = FALSE, adjustPos = 1.5)
+```
+
+```{r ggFFClusScatPlot-advanced-5, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+library(ggplot2)
+changeBackColFunc <- function(oldPlot){
+  newPlot <- oldPlot + scale_fill_gradient(low = 'white', high = 'purple')
+  return(newPlot)
+}
+ggFFClusScatPlot(mpg$cty, mpg$hwy, xAxisTitle = 'cty', yAxisTitle = 'hwy', changeBackCol = changeBackColFunc)
+```
+
+```{r ggFFClusScatPlot-advanced-6, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+library(ggplot2)
+changeFontColValueFunc <- function(oldPlot){
+  newPlot <- oldPlot + scale_color_continuous(low = 'dark grey', high = 'purple')
+ return(newPlot)
+}
+ggFFClusScatPlot(mpg$cty, mpg$hwy, xAxisTitle = 'cty', yAxisTitle = 'hwy', changeFontColValue = changeFontColValueFunc)
+```
+
+```{r ggFFClusScatPlot-advanced-7, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+library(ggplot2)
+cols <- topo.colors(9)
+ggFFClusScatPlot(mpg$cty, mpg$hwy, xAxisTitle = 'cty', yAxisTitle = 'hwy', changeFontColDigit = cols)
+```
+
+
+## Advanced application
+
+If you are familiar with `ggplot2`, you can use the `addGGFFLayer` function provided in this package together with the functions provided in ggplot2 package to build your own FatFonts plots. The most important thing to do in this case is to change the data structure so that it can be read by both `ggplot2` and `addGGFFLayer`. An example is provided as follow:
+
+```{r addGGFFLayer, exercise = TRUE, warning = FALSE}
+# Library
+library(ggplot2)
+library(ggFatFonts)
+
+# Creat test dataset
+test <- data.frame(var1 = c('a', 'a', 'b', 'b'),
+var2 = c('a', 'c', 'a', 'd'),
+fill = c(12, 53, 87, 6))
+
+# Create ggplot without FatFonts layer
+myPlot <- ggplot(data = test, mapping = aes(x = var1, y = var2, fill = fill)) +
+geom_tile() +
+coord_fixed(ratio = 1, expand = FALSE)
+
+# Add FatFonts layer
+myPlot <- addGGFFLayer(oldPlot = myPlot,
+data = test[, 3],
+xBinLength = 1,
+yBinLength = 1,
+font = 'Cubica',
+fontSize = 8,
+fontColor = '#FFFFFF',
+adjustPos = 9)
+print(myPlot)
+```
+
