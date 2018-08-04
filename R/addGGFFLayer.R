@@ -1,5 +1,4 @@
 #' @import ggplot2
-#' @import grDevices
 
 #' @title Add FatFonts layers to a ggplot object
 #'
