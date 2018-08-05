@@ -58,7 +58,7 @@ A tutorial is provided to get you started. However, there are several things you
 
 ### Step 1 Install fonts
 
-Download the font files __Cubica.otf__, __Miguta.otf__ and __Rotunda.otf__ from the __fonts__ subdirectory.
+Download the font files __Cubica.otf__, __Miguta.otf__ and __Rotunda.otf__ from the __fonts__ subdirectory and then install them.
 
 ### Step 2 Install libraries
 
