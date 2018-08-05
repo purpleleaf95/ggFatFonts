@@ -6,10 +6,9 @@ Author: Chen Pan, Miguel Nacenta
 Maintainer: <Carol.PanChen@outlook.com>
 Description: A ggPlot2 plug-in for FatFonts graphics.
     This package helps you build FatFonts graphics on the basis of ggplot2.
-      There are currently four quick plot functions provided: ggFFConfMatr, ggFFHeatMap, ggFFCorrMatr and ggFFClusScatPlot.
+    There are currently four quick plot functions provided: ggFFConfMatr, ggFFHeatMap, ggFFCorrMatr and ggFFClusScatPlot.
     Moreover, if you want to build some other plots using FatFonts, you can use addGGFFLayer function.
-    There are five FatFonts types available: "Cubica", "Miguta", "Rotunda", "VizFont - Gannet" and "VizFonts-150917 even",
-    among which "VizFonts-150917 even" is used as normal fonts to compare with FatFonts.
+    There are three FatFonts types available: "Cubica", "Miguta", and "Rotunda".
 License: MIT + file LICENSE
 Depends: R (>= 3.1)
 Imports: ggplot2 (>= 3.0.0)
