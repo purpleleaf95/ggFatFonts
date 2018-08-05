@@ -16,7 +16,7 @@ This package only works on Windows OS for now.
     library(ggFatFonts)
     ggFFConfMatr(confMatrTestData$`actual value`, confMatrTestData$`predicted value`)
     
-<div align=center>![](example/example_confusion matrix.png){width="100%"}</div>
+<div align=center>[Confusion Matrix](example/example_confusion matrix.png){width="100%"}</div>
 
 ### Heatmap
 
@@ -25,7 +25,7 @@ This package only works on Windows OS for now.
     cols <- topo.colors(9)
     ggFFHeatMap(x = txhousing$year[1:2000], y = txhousing$city[1:2000], z = txhousing$sales[1:2000], xAxisTitle = 'year', yAxisTitle = 'city', zAxisTitle = 'sales', fontSize = 2, changeFontColDigit = cols)
 
-<div align=center>![](example/example_heatmap.png){width="100%"}</div>
+<div align=center>[Heatmap](example/example_heatmap.png){width="100%"}</div>
 
 ### Correlation Matrix
 
@@ -37,7 +37,7 @@ This package only works on Windows OS for now.
     }
     ggFFCorrMatr(mtcars[c(1, 3:7)], changeFontColValue = changeFontColValueFunc, adjustPos = 1, fontSize = 1)
     
-<div align=center>![](example/example_correlation matrix.png){width="100%"}</div>
+<div align=center>[Correlation Matrix](example/example_correlation matrix.png){width="100%"}</div>
 
 ### Cluster Scatter Plot
 
@@ -49,7 +49,7 @@ This package only works on Windows OS for now.
     }
     ggFFClusScatPlot(mpg$cty, mpg$hwy, xAxisTitle = 'cty', yAxisTitle = 'hwy', changeBackCol = changeBackColFunc, fontSize = 1.6)
     
-<div align=center>![](example/example_cluster scatter plot.png){width="100%"}</div>
+<div align=center>[Cluster Scatter Plot](example/example_cluster scatter plot.png){width="100%"}</div>
 
 
 ## How to use this package
@@ -76,7 +76,7 @@ If you are running the tutorial for the first time on your machine, the tutorial
 1. Find the local path where R libraries are stored. The default installing directory for Windows users is usually `C:\Program Files\R\R-3.x.x\library`. (Replace 3.x.x with the R version you are currently using) If you cannot find the path, open RStudio and click __Tools -> Global Options... -> General__. You will find the path in the __R version__ block.
 2. Add `\ggFatFonts\tutorials\tutorial` to the end of your local path (i.e. `C:\Program Files\R\R-3.x.x\library\ggFatFonts\tutorials\tutorial` if you installed R using default settings). Find the __tutorial.Rmd__ file and open it in RStudio.
 3. Click `Run Document`.
-<div align=center>![](example/Run document.png){width="80%"}</div>
+<div align=center>[Run document example](example/Run document.png){width="80%"}</div>
 4. Wait for several seconds and a window containing the tutorial will then jump out.
 
 ### Step 4 Enjoy the package
