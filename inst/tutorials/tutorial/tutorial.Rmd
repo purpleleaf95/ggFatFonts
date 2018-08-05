@@ -30,7 +30,7 @@ This package only works on Windows OS for now.
     library(ggFatFonts)
     ggFFConfMatr(confMatrTestData$`actual value`, confMatrTestData$`predicted value`)
     
-<div align=center>![](images/example_confusion matrix.png){width="100%"}</div>
+<div align=center>![](images/example_confusion matrix.png){width="60%"}</div>
 
 #### Heatmap
 
@@ -39,7 +39,7 @@ This package only works on Windows OS for now.
     cols <- topo.colors(9)
     ggFFHeatMap(x = txhousing$year[1:2000], y = txhousing$city[1:2000], z = txhousing$sales[1:2000], xAxisTitle = 'year', yAxisTitle = 'city', zAxisTitle = 'sales', fontSize = 2, changeFontColDigit = cols)
 
-<div align=center>![](images/example_heatmap.png){width="100%"}</div>
+<div align=center>![](images/example_heatmap.png){width="60%"}</div>
 
 #### Correlation Matrix
 
@@ -51,7 +51,7 @@ This package only works on Windows OS for now.
     }
     ggFFCorrMatr(mtcars[c(1, 3:7)], changeFontColValue = changeFontColValueFunc, adjustPos = 1, fontSize = 1)
     
-<div align=center>![](images/example_correlation matrix.png){width="100%"}</div>
+<div align=center>![](images/example_correlation matrix.png){width="60%"}</div>
 
 #### Cluster Scatter Plot
 
@@ -63,7 +63,7 @@ This package only works on Windows OS for now.
     }
     ggFFClusScatPlot(mpg$cty, mpg$hwy, xAxisTitle = 'cty', yAxisTitle = 'hwy', changeBackCol = changeBackColFunc, fontSize = 1.6)
     
-<div align=center>![](images/example_cluster scatter plot.png){width="100%"}</div>
+<div align=center>![](images/example_cluster scatter plot.png){width="60%"}</div>
 
 
 ## Install ggFatFonts
