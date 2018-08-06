@@ -80,6 +80,7 @@ Go to [RStudio official site](https://www.rstudio.com/products/rstudio/download/
 
 You can directly install the package in RStudio by running the following code:
 
+    install.packages("devtools")
     devtools::install_github("purpleleaf95/ggFatFonts")
 
 Alternatively, you can download the source packages from [GitHub](https://github.com/purpleleaf95/ggFatFonts) and install it locally.
