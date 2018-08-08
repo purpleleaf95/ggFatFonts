@@ -350,6 +350,15 @@ library(ggFatFonts)
 ggFFClusScatPlot(mpg$cty, mpg$hwy, xAxisTitle = 'cty', yAxisTitle = 'hwy')
 ```
 
+### Show points
+
+If you want to show normal scatter plots on the same plot, simply specify `showPoints = TRUE`.
+
+```{r ggFFClusScatPlot-advanced-8, exercise = TRUE, warning = FALSE}
+library(ggFatFonts)
+ggFFClusScatPlot(mpg$cty, mpg$hwy, xAxisTitle = 'cty', yAxisTitle = 'hwy', showPoints = TRUE)
+```
+
 ### Change bin lengths
 
 You can change the bin length of both x and y axis by specifying the `xBinLength` and `yBinLength` parameters respectively. It is recommended to set x = y as each grid is square.
