@@ -142,7 +142,6 @@ ggFFConfMatr <- function(actuClass,
                                  size = tileBorderSize)
     myPlot <- changeBackCol(myPlot)
   }
-
   # Add layer of titles
   myPlot <- myPlot + labs(title = 'Confusion Matrix',
                           x = 'actual class',
