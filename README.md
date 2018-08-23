@@ -7,15 +7,15 @@ This package helps you build [FatFonts](http://fatfonts.org/) graphics based on 
 FatFonts is a visualization technique which can show the symbolic as well as the quantitative aspects of numbers simultaneously, in a way that both overview and detailed views are supported. The order of each digit (i.e. in the unit¡¯s/ten¡¯s/hundred¡¯s place within a number) is revealed by the size of the whole area where the value of this digit can be represented, while the ink that is used to draw this digit in the area is determined by its exact value. There are three FatFonts types available: "Cubica", "Miguta" and "Rotunda".<br>
 
 <div align=center><img src = "./example/FatFonts_Cubica.png"></div>
-<div align=center>__Cubica__</div>
+<div align=center>Cubica</div>
 <br>
 
 <div align=center><img src = "./example/FatFonts_Miguta.png"></div>
-<div align=center>__Miguta__</div>
+<div align=center>Miguta</div>
 <br>
 
 <div align=center><img src = "./example/FatFonts_Rotunda.png"></div>
-<div align=center>__Rotunda__</div>
+<div align=center>Rotunda</div>
 
 The numbers in each plot represent 19, 28, 37, 46, 55, 64, 73, 82, 91 successively.
 
