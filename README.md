@@ -2,7 +2,22 @@
 
 ## What is this package about?
 
-This package helps you build [FatFonts](http://fatfonts.org/) graphics based on [ggplot2](https://ggplot2.tidyverse.org/). There are three FatFonts types available: "Cubica", "Miguta" and "Rotunda".
+This package helps you build [FatFonts](http://fatfonts.org/) graphics based on [ggplot2](https://ggplot2.tidyverse.org/).
+
+FatFonts is a visualization technique which can show the symbolic as well as the quantitative aspects of numbers simultaneously, in a way that both overview and detailed views are supported. The order of each digit (i.e. in the unit¡¯s/ten¡¯s/hundred¡¯s place within a number) is revealed by the size of the whole area where the value of this digit can be represented, while the ink that is used to draw this digit in the area is determined by its exact value. There are three FatFonts types available: "Cubica", "Miguta" and "Rotunda".<br>
+
+<div align=center>![](example/FatFonts_Cubica.png){width="60%"}</div>
+<div align=center>__Cubica__</div>
+<br>
+
+<div align=center>![](example/FatFonts_Miguta.png){width="60%"}</div>
+<div align=center>__Miguta__</div>
+<br>
+
+<div align=center>![](example/FatFonts_Rotunda.png){width="60%"}</div>
+<div align=center>__Rotunda__</div>
+
+The numbers in each plot represent 19, 28, 37, 46, 55, 64, 73, 82, 91 successively.
 
 There are currently four quick plot functions provided: `ggFFConfMatr`, `ggFFHeatMap`, `ggFFCorrMatr` and `ggFFClusScatPlot`. They help to draw FatFonts Confusion Matrix, Heatmap, Correlation Matrix and Cluster Scatter Plot respectively. If you want to build some other plots using FatFonts, you can use `addGGFFLayer` function.
 
